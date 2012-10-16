@@ -1,41 +1,37 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-body {
+body * {
     -webkit-perspective: 1000px;
-}
-.container {
-    -webkit-perspective: 1000px;
-    -webkit-transform-origin-y: 10%;
-}
-.card {
     -webkit-transform-style: preserve-3d;
     -webkit-transition: all 1.0s ease-in-out;
+    -webkit-box-sizing: border-box;
 }
-:hover .card {
-    -webkit-transform: rotateY(180deg);
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.wrap {
+/*    -webkit-transform-origin-y: 10%;*/
 }
+.card {
+    bottom: 10%;
+    left: 10%;
+}
+
 .face {
     -webkit-backface-visibility: hidden;
 }
-.face.back {
-    -webkit-box-sizing: border-box;
+.back {
     -webkit-transform: rotateY(180deg);
 }
-#c0, #c1 {
-    position: absolute;
+.flip  {
+    -webkit-transform: rotateY(180deg);
 }
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #c0 {
-    top: 5px;
-    -webkit-perspective: 800px;
+    -webkit-transform: translateZ(-500px);
 }
 #c1 {
-    top: 10px;
-    -webkit-perspective: 800px;
+    -webkit-perspective: 1800px;
+    -webkit-transform: translateZ(1px);
 }
-#c0 {
-    -webkit-transform: translateZ(-100px);
-}
-#c1 {
-    -webkit-transform-origin-y: 1110%;
-    -webkit-transform: translateZ(+100px);
+.flip #c1 {
+    -webkit-transform: translateZ(-1px);
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

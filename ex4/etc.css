@@ -1,28 +1,41 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-body {
+* {
+    margin: auto;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+html {
     font-family: 'Helvetica Neue', sans-serif;
 }
-.container {
-    height: 281px;
-    margin: 10px auto;
-    position: relative;
-    width: 450px;
-    z-index: 1;
+body {
+    height: 1500px;
+    background-color: black;
+}
+.wrap {
 }
 .card {
-    height: 100%;
-    width: 100%;
 }
 .face {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-}
-.face.back {
     background-color: #AAA;
     color: white;
-    display: block;
-    padding: 10px;
     text-align: center;
+    font-size: 33px;
+}
+.face * {
+    position: static;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#field {
+    background-color: rgba(255,255,255,.5);
+}
+#c0 {
+    height: 281px;
+    width: 450px;
+}
+#c1 {
+    height: 281px;
+    width: 450px;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
