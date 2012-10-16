@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Testing mousewheel plugin</title>
+        <script src="/lib/jquery/jquery-1.7.2.js"></script>
+        <script src="jquery.mousewheel.js"></script>
+
+        <style>
+            .test {
+                width: 120px;
+                height: 100px;
+                float: left;
+                color: #fff;
+                padding: 5px;
+                -webkit-box-sizing: border-box;
+            }
+            #test1 {
+                background-color: #000;
+            }
+            #test2 {
+                background-color: #333;
+            }
+            #test3 {
+                background-color: #666;
+            }
+            #test4 {
+                background-color: #000;
+            }
+            #test5 {
+                background-color: #333;
+                width: 400px;
+                height: 400px;
+            }
+            #test6 {
+                background-color: #666;
+                width: 250px;
+                height: 250px;
+            }
+            #test7 {
+                background-color: #000;
+            }
+            #forceScroll {
+                clear: both;
+                height: 1000px;
+            }
+
+            #logger {
+                position: absolute;
+                top: 415px;
+                left: 15px;
+                width: 460px;
+                height: 290px;
+                overflow: auto;
+            }
+
+            #logger p {
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                padding: 2px;
+                border-bottom: 1px solid #ccc;
+                margin: 0;
+            }
+
+            #logger p:nth-child(even) {
+                background-color: #FFFFE8;
+            }
+
+            #logger p:nth-child(10n) {
+                border-bottom-color: #000;
+            }
+        </style>
+        <script type="text/javascript">
+            $(function () {
+                $('#userAgent').html(navigator.userAgent);
+
+                $('#test1').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test1: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o + ' pageX: ' + event.pageX + ' pageY: ' + event.pageY);
+                });
+
+                $('#test2').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test2: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o);
+                    return false; // prevent default
+                });
+
+                $('#test3').hover(function () {
+                    log('#test3: mouseover');
+                }, function () {
+                    log('#test3: mouseout');
+                }).mousewheel(function (event, delta, deltaX, deltaY) {
+                    log('#test3: I should not have been logged');
+                }).unmousewheel();
+
+                var testRemoval = function (event, delta, deltaX, deltaY) {
+                    log('#test4: I should not have been logged');
+                };
+
+                $('#test4').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test4: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o);
+                    return false;
+                }).mousewheel(testRemoval).mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test4: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o + ' from 2nd handler');
+                    return false;
+                }).unmousewheel(testRemoval);
+
+                $('#test5').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test5: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o);
+
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
+
+                $('#test6').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test6: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o);
+
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
+
+                $('#test7').mousewheel(function (event, delta, deltaX, deltaY) {
+                    var o = '#test7: ';
+                    if (delta > 0) o += 'up (' + delta + ')';
+                    else if (delta < 0) o += 'down (' + delta + ')';
+
+                    if (deltaX > 0) o += ', east (' + deltaX + ')';
+                    else if (deltaX < 0) o += ', west (' + deltaX + ')';
+
+                    if (deltaY > 0) o += ', north (' + deltaY + ')';
+                    else if (deltaY < 0) o += ', south (' + deltaY + ')';
+
+                    if (o != '') log(o);
+
+                    event.preventDefault();
+                });
+
+                function log(msg) {
+                    $('#logger').append('<p>' + msg + '</p>').scrollTop(999999);
+                };
+            });
+
+        </script>
+    </head>
+    <body>
+        <h1 id="banner">jQuery mousewheel.js - Test</h1>
+        <h2 id="userAgent"></h2>
+
+        <ul>
+            <li><strong>Test1</strong> is just using the plain on mousewheel() with a function passed in and does not prevent default. (Also logs the value of pageX and pageY event properties.)</li>
+            <li><strong>Test2</strong> should prevent the default action.</li>
+            <li><strong>Test3</strong> should only log a mouseover and mouseout event. Testing unmousewheel().</li>
+            <li><strong>Test4</strong> has two handlers.</li>
+            <li><strong>Test5</strong> is like Test2 but has children. The children should not scroll until mousing over them.</li>
+            <li><strong>Test6</strong> is like Test5 but should not scroll children or parents.</li>
+            <li><strong>Test7</strong> is like Test6 but has no children. It will propagate the event and scroll test 6 as well.</li>
+        </ul>
+        <div class="test" id="test1"><p>Test1</p></div>
+        <div class="test" id="test2"><p>Test2</p></div>
+        <div class="test" id="test3"><p>Test3</p></div>
+        <div class="test" id="test4"><p>Test4</p></div>
+        <div class="test" id="test5">
+            <p>Test5</p>
+            <div class="test" id="test6">
+                <p>Test6</p>
+                <div class="test" id="test7"><p>Test7</p></div>
+            </div>
+        </div>
+        <div id="logger"></div>
+        <div id="forceScroll"></div>
+    </body>
+</html>
