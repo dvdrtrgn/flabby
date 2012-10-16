@@ -10,7 +10,8 @@ html {
     font-family: 'Helvetica Neue', sans-serif;
 }
 body {
-    height: 1500px;
+    height: 111%;
+    width: 111%;
     background-color: black;
 }
 .wrap {
