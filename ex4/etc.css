@@ -1,0 +1,28 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+}
+.container {
+    height: 281px;
+    margin: 10px auto;
+    position: relative;
+    width: 450px;
+    z-index: 1;
+}
+.card {
+    height: 100%;
+    width: 100%;
+}
+.face {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.face.back {
+    background-color: #AAA;
+    color: white;
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

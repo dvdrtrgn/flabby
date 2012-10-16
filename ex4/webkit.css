@@ -1,0 +1,41 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+body {
+    -webkit-perspective: 1000px;
+}
+.container {
+    -webkit-perspective: 1000px;
+    -webkit-transform-origin-y: 10%;
+}
+.card {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: all 1.0s ease-in-out;
+}
+:hover .card {
+    -webkit-transform: rotateY(180deg);
+}
+.face {
+    -webkit-backface-visibility: hidden;
+}
+.face.back {
+    -webkit-box-sizing: border-box;
+    -webkit-transform: rotateY(180deg);
+}
+#c0, #c1 {
+    position: absolute;
+}
+#c0 {
+    top: 5px;
+    -webkit-perspective: 800px;
+}
+#c1 {
+    top: 10px;
+    -webkit-perspective: 800px;
+}
+#c0 {
+    -webkit-transform: translateZ(-100px);
+}
+#c1 {
+    -webkit-transform-origin-y: 1110%;
+    -webkit-transform: translateZ(+100px);
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

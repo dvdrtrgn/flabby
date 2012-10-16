@@ -1,0 +1,19 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.container {
+    perspective: 1000px;
+}
+.card {
+    transform-style: preserve-3d;
+    transition: all 1.0s linear;
+}
+.container:hover .card {
+    transform: rotateY(180deg);
+}
+.face {
+    backface-visibility: hidden;
+}
+.face.back {
+    box-sizing: border-box;
+    transform: rotateY(180deg);
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
