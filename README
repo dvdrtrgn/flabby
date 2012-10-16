@@ -1,0 +1,14 @@
+idea hurdles
+1   field in which you click a location and the box eases to that point
+    css that does transition time of box
+    js that gets mouse click (and puts offset onto box)
+2   movement tracker that has two boxes one to min-movement and one to max-...
+    movement within the min. has no effect
+    outside the min but within max has to factored
+3   parallel fields that have a zoom factor
+    each field can siblings at strata
+    view of one affects angle of all
+4   field rotation according to tracker in #2
+    axis y and x (maybe z)
+
+#stub
