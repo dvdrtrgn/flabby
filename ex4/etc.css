@@ -2,9 +2,11 @@
 * {
     margin: auto;
     padding: 0;
+    position: absolute;
+}
+html, body, div {
     height: 100%;
     width: 100%;
-    position: absolute;
 }
 html {
     font-family: 'Helvetica Neue', sans-serif;

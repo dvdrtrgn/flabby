@@ -2,12 +2,12 @@
 body * {
     -webkit-perspective: 1000px;
     -webkit-transform-style: preserve-3d;
-    -webkit-transition: all 1.0s ease-in-out;
+    -webkit-transition: -webkit-transform 1.0s ease-in-out;
     -webkit-box-sizing: border-box;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .wrap {
-/*    -webkit-transform-origin-y: 10%;*/
+    /*    -webkit-transform-origin-y: 10%;*/
 }
 .card {
     bottom: 10%;
@@ -35,3 +35,27 @@ body * {
     -webkit-transform: translateZ(-1px);
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+._n {
+    -webkit-transform: rotateZ(0deg);
+}
+._ne {
+    -webkit-transform: rotateZ(45deg);
+}
+._e {
+    -webkit-transform: rotateZ(90deg);
+}
+._se {
+    -webkit-transform: rotateZ(135deg);
+}
+._s {
+    -webkit-transform: rotateZ(180deg);
+}
+._sw {
+    -webkit-transform: rotateZ(225deg);
+}
+._w {
+    -webkit-transform: rotateZ(270deg);
+}
+._nw {
+    -webkit-transform: rotateZ(315deg);
+}
