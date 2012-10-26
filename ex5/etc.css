@@ -1,6 +1,6 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 * {
-    box-sizing: border-box;
+    box-sizing: bounding-box;
     margin: 0;
     padding: 0;
 }
@@ -21,7 +21,7 @@ body {
 }
 .container {
     border: 1px solid red;
-    height: 11921px;
+    height: 10921px;
     left: 50%;
     margin-left: -960px;
     position: absolute;

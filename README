@@ -13,3 +13,24 @@ idea hurdles
 5   verify auto margin can be used for a controlled float layout
     has min and max, keeps centered
 
+send two object properties to a fucntion to calc collision
+object {
+    x, y, width, height
+}
+    function collides(a, b) {
+      return a.x < b.x + b.width &&
+             a.x + a.width > b.x &&
+             a.y < b.y + b.height &&
+             a.y + a.height > b.y;
+    }
+
+
+send a point in space to an object and ask if it is there
+object.check(point){
+
+}
+object {origin, mass, check()}
+
+Triad [x,y,z]
+point:Triad // origin
+sizes:Triad // mass
