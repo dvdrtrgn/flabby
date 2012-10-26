@@ -1,0 +1,51 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    border: 1px solid blue;
+    position: relative;
+    height: 100%;
+}
+body {
+    background-image: url("../images/backSpace.jpg");
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: 50% -1000px;
+    border: 1px solid green;
+    font-family: "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.container {
+    border: 1px solid red;
+    height: 11921px;
+    left: 50%;
+    margin-left: -960px;
+    position: absolute;
+    width: 960px;
+}
+div.years {
+    background-image: url("../images/years.png");
+    border: 1px solid gray;
+    height: 6426px;
+    left: 35%;
+    position: absolute;
+    top: 475px;
+    width: 137px;
+    z-index: 45;
+}
+div.line_years {
+    background-image: url("../images/line_years.png");
+    border: 1px solid white;
+    height: 6457px;
+    left: 0;
+    position: absolute;
+    top: 446px;
+    width: 1920px;
+    z-index: 40;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

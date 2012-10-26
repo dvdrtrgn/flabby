@@ -10,5 +10,6 @@ idea hurdles
     view of one affects angle of all
 4   field rotation according to tracker in #2
     axis y and x (maybe z)
+5   verify auto margin can be used for a controlled float layout
+    has min and max, keeps centered
 
-#stub
