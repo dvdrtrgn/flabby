@@ -1,50 +1,47 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 * {
-    box-sizing: bounding-box;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 html {
-    border: 1px solid blue;
-    position: relative;
+    border: 1px solid white;
+    font-family: sans-serif;
     height: 100%;
 }
 body {
-    background-image: url("../images/backSpace.jpg");
-    background-color: black;
+    background-color: green;
+    background-image: url("../images/backSpace.png");
+    background-position: 50% -500px;
     background-repeat: no-repeat;
-    background-position: 50% -1000px;
-    border: 1px solid green;
-    font-family: "Trebuchet MS", Verdana, Helvetica, sans-serif;
-    overflow-y: scroll;
     overflow-x: hidden;
 }
 .container {
     border: 1px solid red;
-    height: 10921px;
-    left: 50%;
-    margin-left: -960px;
+    height: 5460px;
+    left: 50%; /* of what? */
+    margin-left: -475px;
     position: absolute;
-    width: 960px;
+    width: 475px;
 }
 div.years {
     background-image: url("../images/years.png");
-    border: 1px solid gray;
-    height: 6426px;
-    left: 35%;
+    border-left: 1px solid yellow;
+    height: 3213px;
+    left: 0;
     position: absolute;
-    top: 475px;
-    width: 137px;
+    top: 237px;
+    width: 69px;
     z-index: 45;
 }
 div.line_years {
     background-image: url("../images/line_years.png");
-    border: 1px solid white;
-    height: 6457px;
+    border-right: 1px solid blue;
+    height: 3228px;
     left: 0;
     position: absolute;
-    top: 446px;
-    width: 1920px;
+    top: 223px;
+    width: 950px;
     z-index: 40;
 }
 
