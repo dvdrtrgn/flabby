@@ -1,9 +1,17 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function accessor (x) {
-    return function (n) {
-        return x.valueOf(n);
-    };
+var accessors = {
+    a: function (x) {
+        return function (n) {
+            return x.valueOf(n);
+        };
+    },
+    A: function (nom, fn) {
+        this.__defineGetter__(nom, fn);
+        this.__defineSetter__(nom, fn);
+    },
 }
+
+
 
 function collides(t1, t2) {
     return t1.x < t2.x + t2.width && t1.x + t1.width > t2.x && t1.y < t2.y + t2.height && t1.y + t1.height > t2.y;
@@ -57,8 +65,7 @@ Block.prototype._ = 'block';
 $.extend(Block.prototype, {
     v: [1, 1, 1, Infinity],
     k: ['width', 'height', 'depth', 'endure'],
-    a: accessor,
-});
+}, accessors);
 
 function Origin(v) {
     var v = this._v = new Vector(v || this.v, this.k);
@@ -66,14 +73,14 @@ function Origin(v) {
     this.y = this.a(v[1]);
     this.z = this.a(v[2]);
     this.t = this.a(v[3]);
+    this.A('tt', this.a(v[3]));
     console.log(this, v, this.a(v[3])());
 }
 Origin.prototype._ = 'origin';
 $.extend(Origin.prototype, {
     v: [0, 0, 1, Infinity],
     k: ['left', 'top', 'zIndex', 'time'],
-    a: accessor,
-});
+}, accessors);
 
 function vectest(v) {
     var t = typeof v;
