@@ -1,4 +1,12 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+div.hero {
+    background: url("../images/pic.jpg") no-repeat local center;
+    height: 100%;
+    left: 33%;
+    position: fixed;
+    top: 0%;
+    width: 450px;
+}
 * {
     box-sizing: border-box;
     margin: 0;
