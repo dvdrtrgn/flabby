@@ -1,23 +1,24 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var accessors = {
-    a: function (x) {
+    a: function (x, y) {
         return function (n) {
-            return x.valueOf(n);
+            return x[y || 'valueOf'](n);
         };
     },
-    A: function (nom, fn) {
-        this.__defineGetter__(nom, fn);
-        this.__defineSetter__(nom, fn);
+    A: function (nom, fn1, fn2) {
+        this[Object.defineProperty ? 'A1' : 'A2'](nom, fn1, fn2);
     },
-}
-
-
-
-function collides(t1, t2) {
-    return t1.x < t2.x + t2.width && t1.x + t1.width > t2.x && t1.y < t2.y + t2.height && t1.y + t1.height > t2.y;
-}
-
-//$(init);
+    A1: function (nom, fn1, fn2) {
+        Object.defineProperty(this, nom, {
+            get: fn1,
+            set: (fn2 || fn1),
+        });
+    },
+    A2: function (nom, fn1, fn2) {
+        this.__defineGetter__(nom, fn1);
+        this.__defineSetter__(nom, fn2 || fn1);
+    },
+};
 
 function Point(v, k) {
     if (k) this.k = k;
@@ -59,7 +60,7 @@ function Block(v) {
     this.h = this.a(v[1]);
     this.d = this.a(v[2]);
     this.e = this.a(v[3]);
-    console.log(this, v, this.a(v[3])());
+    console.log(this, v, this.e());
 }
 Block.prototype._ = 'block';
 $.extend(Block.prototype, {
@@ -69,12 +70,11 @@ $.extend(Block.prototype, {
 
 function Origin(v) {
     var v = this._v = new Vector(v || this.v, this.k);
-    this.x = this.a(v[0]);
-    this.y = this.a(v[1]);
-    this.z = this.a(v[2]);
-    this.t = this.a(v[3]);
-    this.A('tt', this.a(v[3]));
-    console.log(this, v, this.a(v[3])());
+    this.A('x', this.a(v[0]));
+    this.A('y', this.a(v[1]));
+    this.A('z', this.a(v[2]));
+    this.A('t', this.a(v[3]));
+    console.log(this, v, this.t);
 }
 Origin.prototype._ = 'origin';
 $.extend(Origin.prototype, {
@@ -83,12 +83,13 @@ $.extend(Origin.prototype, {
 }, accessors);
 
 function vectest(v) {
-    var t = typeof v;
-    if (t === 'object') {
+    switch (typeof v) {
+    case 'object':
         if (v._ === 'vector') return v;
-    } else if (t === 'undefined') {
+    case 'undefined':
         console.log('creating default vector');
-    } else {
+        break;
+    default:
         throw new Error('not a vector');
     }
     return new Vector(v);
