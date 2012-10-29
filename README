@@ -16,6 +16,6 @@ idea hurdles
     has min and max, keeps centered
 6   send two object properties to a function to calc collision
     send a point in space to an object and ask if it is there
-
+7   scroll the three different ways
 
 */

@@ -1,0 +1,70 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #ddd;
+    font-family: sans-serif;
+    font-size: 20px;
+    height: 2500px;
+}
+#body {
+    background-image: url("../images/background.jpg");
+    color: #000;
+    height: 590px;
+    width: 940px;
+}
+
+/* sections */
+section {
+    border: 5px solid rgba(255,255,255,.2);
+    border-radius: 5px;
+    bottom: 55px;
+    box-shadow: 0 0 10px #000;
+    overflow: auto;
+    position: absolute;
+    padding: 10px;
+    text-align: center;
+    top: 20px;
+    width: 236px;
+}
+section:hover {
+    border-color: red;
+}
+section P {
+    background: rgba(244,244,244,.5);
+    border-radius: 5px;
+    color: #000;
+    height: 66px;
+    margin: 0 0 10px;
+    padding: 66px 10px;
+    text-shadow: 0 1px 1px #eee;
+}
+
+
+/* Types */
+.scroll {
+    background: url("../images/background.jpg") no-repeat scroll -25px -25px #fff;
+    left: 20px;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.fixed {
+    background: url("../images/background.jpg") no-repeat fixed 0 0 #fff;
+    left: 306px;
+}
+.local {
+    background: url("../images/background.jpg") no-repeat local -597px -25px #fff;
+    left: 592px;
+}
+
+.local {
+    background: url("../images/background.jpg") no-repeat local -311px -25px #fff;
+    left: 306px;
+}
+.fixed {
+    background: url("../images/background.jpg") no-repeat fixed 0px 0px #fff;
+    left: 592px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
