@@ -5,42 +5,52 @@ var accessors = {
             return x[y || 'valueOf'](n);
         };
     },
-    A: function (nom, fn1, fn2) {
-        this[Object.defineProperty ? 'A1' : 'A2'](nom, fn1, fn2);
-    },
-    A1: function (nom, fn1, fn2) {
-        Object.defineProperty(this, nom, {
-            get: fn1,
-            set: (fn2 || fn1),
-        });
-    },
-    A2: function (nom, fn1, fn2) {
-        this.__defineGetter__(nom, fn1);
-        this.__defineSetter__(nom, fn2 || fn1);
-    },
+    A: function (nom, f1, f2) {
+        try { // ES5
+            if (Object.defineProperty){
+                Object.defineProperty(this, nom, {
+                    get: f1,
+                    set: (f2 || f1),
+                });
+            } else { // ES4
+                this.__defineGetter__(nom, f1);
+                this.__defineSetter__(nom, f2 || f1);
+            }
+        } catch (err) { // IE < 9
+            console.log(err);
+        }
+    }
 };
 
 function Point(v, k) {
-    if (k) this.k = k;
+    if (k) {
+        this.k = k;
+    }
     this.v = v || 0;
 }
 $.extend(Point.prototype, {
     v: 0,
     k: 'point',
     valueOf: function (x) {
-        if (x) this.v = (typeof x === 'object') ? x.valueOf() : x;
+        if (x) {
+            this.v = (typeof x === 'object') ? x.valueOf() : x;
+        }
         return this.v;
     },
     toString: function () {
         return this.k + ':' + this.valueOf();
     },
     offset: function (x) {
-        if (isNaN(x)) x = 0;
-        return this.v += x;
+        if (isNaN(x)) {
+            x = 0;
+        }
+        return (this.v += x);
     },
     transform: function (x) {
-        if (isNaN(x)) x = 1;
-        return this.v *= x;
+        if (isNaN(x)) {
+            x = 1;
+        }
+        return (this.v *= x);
     },
 });
 
@@ -55,21 +65,22 @@ function Vector(vArr, kArr) {
 Vector.prototype._ = 'vector';
 
 function Block(v) {
-    var v = this._v = new Vector(v || this.v, this.k);
-    this.w = this.a(v[0]);
-    this.h = this.a(v[1]);
-    this.d = this.a(v[2]);
-    this.e = this.a(v[3]);
+    v = this._v = new Vector(v || this.v, this.k);
+    this.w = this._.a(v[0]);
+    this.h = this._.a(v[1]);
+    this.d = this._.a(v[2]);
+    this.e = this._.a(v[3]);
     console.log(this, v, this.e());
 }
 Block.prototype._ = 'block';
 $.extend(Block.prototype, {
     v: [1, 1, 1, Infinity],
     k: ['width', 'height', 'depth', 'endure'],
-}, accessors);
+    _: accessors
+});
 
 function Origin(v) {
-    var v = this._v = new Vector(v || this.v, this.k);
+    v = this._v = new Vector(v || this.v, this.k);
     this.A('x', this.a(v[0]));
     this.A('y', this.a(v[1]));
     this.A('z', this.a(v[2]));
@@ -84,13 +95,16 @@ $.extend(Origin.prototype, {
 
 function vectest(v) {
     switch (typeof v) {
-    case 'object':
-        if (v._ === 'vector') return v;
-    case 'undefined':
-        console.log('creating default vector');
-        break;
-    default:
-        throw new Error('not a vector');
+        case 'object':
+            if (v._ === 'vector') {
+                return v;
+            } // could be an array
+            break;
+        case 'undefined':
+            console.log('creating default vector');
+            break;
+        default:
+            throw new Error('not a vector');
     }
     return new Vector(v);
 }
