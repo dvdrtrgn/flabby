@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=8">
+        <title>ex8</title>
+        <script src="/lib/jquery/jquery-1.7.2.js"></script>
+        <script src="/lib/shimsham/es5-shim.js"></script>
+        <script src="/lib/shimsham/es5-sham.js"></script>
+        <link href="etc.css" rel="stylesheet">
+        <script src="etc.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            Try Accessors
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <script>
+                            makeButton('y:111');
+                        </script>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <script>
+                            makeButton('x:111');
+                        </script>
+
+                    </td>
+                    <td></td>
+                    <td>
+                        <script>
+                            makeButton('x:333');
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <script>
+                            makeButton('y:333');
+                        </script>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <script>
+                makeButton('x:33, y:33, w:600, h:400');
+            </script>
+        </div>
+    </body>
+</html>
+<!-- -->

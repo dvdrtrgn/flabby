@@ -6,19 +6,8 @@ var accessors = {
         };
     },
     A: function (nom, f1, f2) {
-        try { // ES5
-            if (Object.defineProperty){
-                Object.defineProperty(this, nom, {
-                    get: f1,
-                    set: (f2 || f1),
-                });
-            } else { // ES4
-                this.__defineGetter__(nom, f1);
-                this.__defineSetter__(nom, f2 || f1);
-            }
-        } catch (err) { // IE < 9
-            console.log(err);
-        }
+        this.__defineGetter__(nom, f1);
+        this.__defineSetter__(nom, f2 || f1);
     }
 };
 
@@ -108,6 +97,10 @@ function vectest(v) {
     }
     return new Vector(v);
 }
+debugger;
 var bb = new Block();
 var oo = new Origin();
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+function collides(t1, t2) {
+    return t1.x < t2.x + t2.width && t1.x + t1.width > t2.x && t1.y < t2.y + t2.height && t1.y + t1.height > t2.y;
+}
