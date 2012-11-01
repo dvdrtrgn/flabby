@@ -6,6 +6,6 @@
 var bb = new Block();
 var oo = new Origin();
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function collides(t1, t2) {
-    return t1.x < t2.x + t2.width && t1.x + t1.width > t2.x && t1.y < t2.y + t2.height && t1.y + t1.height > t2.y;
+function collides(A, B) {
+    return A.x < B.x + B.w && A.x + A.w > B.x && A.y < B.y + B.h && A.y + A.h > B.y;
 }

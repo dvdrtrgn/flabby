@@ -8,7 +8,8 @@ window._accessors = {
             return x[y || 'valueOf'](n);
         };
     },
-    _A: function (nom, f1, f2) {
+    _A: function (nom, fn, f2) {
+        var f1 = this._a(this._v[fn]);
         this.__defineGetter__(nom, f1);
         this.__defineSetter__(nom, f2 || f1);
     }

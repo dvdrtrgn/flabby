@@ -3,18 +3,18 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 function Block(v) {
-    v = this._v = new Vector(v || this.v, this.k);
-    this.w = this._a(v[0]);
-    this.h = this._a(v[1]);
-    this.d = this._a(v[2]);
-    this.e = this._a(v[3]);
-    console.log(this, v, this.e());
+    this._v = new Vector(v || this.v, this.k);
+    this._A('w', 0);
+    this._A('h', 1);
+    this._A('d', 2);
+    this._A('e', 3);
+    console.log(this, this.v, this.e);
 }
 
 Block.prototype._ = 'block';
 
 $.extend(Block.prototype, {
-    v: [1, 1, 1, Infinity],
+    v: [100, 100, 100, Infinity],
     k: ['width', 'height', 'depth', 'endure'],
 }, _accessors);
 
