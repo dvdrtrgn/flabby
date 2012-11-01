@@ -18,6 +18,7 @@ body {
 
 /* sections */
 section {
+    border: 5px solid white;
     border: 5px solid rgba(255,255,255,.2);
     border-radius: 5px;
     bottom: 55px;
@@ -32,7 +33,7 @@ section {
 section:hover {
     border-color: red;
 }
-section P {
+section p {
     background: rgba(244,244,244,.5);
     border-radius: 5px;
     color: #000;
@@ -45,25 +46,28 @@ section P {
 
 /* Types */
 .scroll {
-    background: url("../images/background.jpg") no-repeat scroll -25px -25px #fff;
+    background: url("../images/background.jpg") no-repeat -25px -25px #fff;
+    background-attachment: scroll;
     left: 20px;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-.fixed {
+/*.fixed {
     background: url("../images/background.jpg") no-repeat fixed 0 0 #fff;
     left: 306px;
 }
 .local {
     background: url("../images/background.jpg") no-repeat local -597px -25px #fff;
     left: 592px;
-}
+}*/
 
 .local {
-    background: url("../images/background.jpg") no-repeat local -311px -25px #fff;
+    background: url("../images/background.jpg") no-repeat -311px -25px #fff;
+    background-attachment: local;
     left: 306px;
 }
 .fixed {
-    background: url("../images/background.jpg") no-repeat fixed 0px 0px #fff;
+    background: url("../images/background.jpg") no-repeat 0px 0px #fff;
+    background-attachment: fixed;
     left: 592px;
 }
 
