@@ -22,7 +22,7 @@ html {
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .q1, .q3 {
-    border: 1px solid black;
+    border: 1px dashed black;
     height: 50%;
     position: absolute;
     width: 50%;
