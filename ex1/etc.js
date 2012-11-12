@@ -1,35 +1,34 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var tmp;
 
-function accessor(pth, _n) {
-    var self;
-    return function (n) {
-        self = self || resolve(this, pth);
-        if (n) {
-            self[_n] = n + 'px';
-        } else {
-            return parseInt(self[_n]) || 0;
-        }
+function accessor(chain, fix) {
+    var relay, obj
+    ,   links = chain.split('.')
+    ,   alias = links.pop()
+    ,   resolve = function (host) {
+        obj = host;
+        while (links.length) obj = obj[links.shift()];
+        console.log('resolve', host, '@', chain, '=>', obj);
+        return obj;
+    };
+    return function (val) {
+        relay = relay || resolve(this);
+        return fix.call(relay, alias, val);
     };
 }
-
-function resolve(obj, str) {
-    var own = obj,
-        pth = str.split('.');
-    while (pth.length) own = own[pth.shift()];
-    console.log('resolve', str, '@', obj, '...', own);
-    return own;
+function pxfix (nom, val) {
+    if (val) this[nom] = (val + 'px');
+    else return parseInt(this[nom]) || 0;
 }
-
 function Box(cf) {
     this.div = $('<div class="box">').appendTo('body').get(0);
     cf && this.nport(cf);
 }
 $.extend(Box.prototype, {
-    x: accessor('div.style', 'left'),
-    y: accessor('div.style', 'top'),
-    w: accessor('div.style', 'width'),
-    h: accessor('div.style', 'height'),
+    x: accessor('div.style.left', pxfix),
+    y: accessor('div.style.top', pxfix),
+    w: accessor('div.style.width', pxfix),
+    h: accessor('div.style.height', pxfix),
     nport: function (o) {
         (o.left !== undefined) && this.x(o.left);
         (o.top !== undefined) && this.y(o.top);
