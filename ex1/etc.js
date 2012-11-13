@@ -16,10 +16,17 @@ function accessor(chain, fix) {
         return fix.call(relay, alias, val);
     };
 }
-function pxfix (nom, val) {
-    if (val) this[nom] = (val + 'px');
-    else return parseInt(this[nom]) || 0;
+
+function fix(nom, val) {
+    if (val) this[nom] = val;
+    return this[nom];
 }
+
+function pxfix(nom, val) {
+    if (val) this[nom] = (val + 'px');
+    return parseInt(this[nom]) || 0;
+}
+
 function Box(cf) {
     this.div = $('<div class="box">').appendTo('body').get(0);
     cf && this.nport(cf);
@@ -29,6 +36,7 @@ $.extend(Box.prototype, {
     y: accessor('div.style.top', pxfix),
     w: accessor('div.style.width', pxfix),
     h: accessor('div.style.height', pxfix),
+    t: accessor('div.childNodes.0.textContent', fix),
     nport: function (o) {
         (o.left !== undefined) && this.x(o.left);
         (o.top !== undefined) && this.y(o.top);
@@ -45,7 +53,7 @@ $.extend(Box.prototype, {
     },
     // take div to quarters by adding add two divs inside with borders
     xhair: function () {
-        var q0 = $(this.div)
+        var q0 = $(this.div).text(' ')
         ,   q1 = $('<div class="q1">') // top right
         ,   q3 = $('<div class="q3">') // bottom left
         ;
@@ -55,6 +63,7 @@ $.extend(Box.prototype, {
     xhere: function (x0, y0) {
         this.x((x0 || 0) - this.w() / 2);
         this.y((y0 || 0) - this.h() / 2);
+        this.t([x0, y0]);
         return this;
     },
     trace: function () {
@@ -69,9 +78,9 @@ $.extend(Box.prototype, {
 function init() {
     tmp = new Box({
         left: 88,
-        top: 33,
-        width: 166,
-        height: 99
+        top: 44,
+        width: 222,
+        height: 122
     }).trace();
 }
 

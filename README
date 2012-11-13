@@ -4,6 +4,7 @@ idea hurdles
 1   field in which you click a location and the box eases to that point
     css that does transition time of box
     js that gets mouse click (and puts offset onto box)
+    facilitate crosshair creation
 2   movement tracker that has two boxes one to min-movement and one to max-...
     movement within the min. has no effect
     outside the min but within max has to factored
