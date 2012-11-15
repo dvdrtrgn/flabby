@@ -7,7 +7,9 @@ function accessor(chain, fix) {
     ,   alias = links.pop()
     ,   resolve = function (host) {
         obj = host;
-        while (links.length) obj = obj[links.shift()];
+        while (links.length) {
+            obj = obj[links.shift()];
+        }
         console.log('resolve', host, '@', chain, '=>', obj);
         return obj;
     };
@@ -18,18 +20,22 @@ function accessor(chain, fix) {
 }
 
 function fix(nom, val) {
-    if (val) this[nom] = val;
+    if (val) {
+        this[nom] = val;
+    }
     return this[nom];
 }
 
 function pxfix(nom, val) {
-    if (val) this[nom] = (val + 'px');
-    return parseInt(this[nom]) || 0;
+    if (val) {
+        this[nom] = (val + 'px');
+    }
+    return parseInt(this[nom], 10) || 0;
 }
 
 function Box(cf) {
     this.div = $('<div class="box">').appendTo('body').get(0);
-    cf && this.nport(cf);
+    $.noop( cf && this.nport(cf) );
 }
 $.extend(Box.prototype, {
     x: accessor('div.style.left', pxfix),
@@ -38,10 +44,10 @@ $.extend(Box.prototype, {
     h: accessor('div.style.height', pxfix),
     t: accessor('div.childNodes.0.textContent', fix),
     nport: function (o) {
-        (o.left !== undefined) && this.x(o.left);
-        (o.top !== undefined) && this.y(o.top);
-        (o.width !== undefined) && this.w(o.width);
-        (o.height !== undefined) && this.h(o.height);
+        $.noop( (o.left !== undefined) && this.x(o.left) );
+        $.noop( (o.top !== undefined) && this.y(o.top) );
+        $.noop( (o.width !== undefined) && this.w(o.width) );
+        $.noop( (o.height !== undefined) && this.h(o.height) );
     },
     xport: function () {
         return {
@@ -75,6 +81,7 @@ $.extend(Box.prototype, {
         return [o.pageX, o.pageY];
     },
     xdify: function (a, b) {
+        var me = this;
         return [Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1])];
     },
     trace: function () {
@@ -82,22 +89,22 @@ $.extend(Box.prototype, {
 
         $('html').bind('mousedown', function (e) {
             a = self.xandy(e);
-
             $(this).one('mousemove.trace', function (e) {
                 $(this).one('mouseup', function () {
                     self.xsize.apply(self, self.xdify(a, b));
+                    self.xhere.apply(self, b);
                 });
             });
         }).bind('mouseup', function (e) {
-            b = self.xandy(e);
             $(this).unbind('mousemove.trace');
+            b = self.xandy(e);
             self.xhere.apply(self, b);
         });
         return this;
     },
 });
 
-function init() {
+function init () {
     tmp = new Box({
         left: 88,
         top: 44,
