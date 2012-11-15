@@ -66,13 +66,35 @@ $.extend(Box.prototype, {
         this.t([x0, y0]);
         return this;
     },
+    xsize: function (w, h) {
+        this.w(w + 100);
+        this.h(h + 100);
+        return this;
+    },
+    xandy: function (o) {
+        return [o.pageX, o.pageY];
+    },
+    xdify: function (a, b) {
+        return [Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1])];
+    },
     trace: function () {
-        var self = this.xhair();
-        $('html').bind('mouseup', function (e) {
-            self.xhere(e.pageX, e.pageY);
+        var a, b, self = this;
+
+        $('html').bind('mousedown', function (e) {
+            a = self.xandy(e);
+
+            $(this).one('mousemove.trace', function (e) {
+                $(this).one('mouseup', function () {
+                    self.xsize.apply(self, self.xdify(a, b));
+                });
+            });
+        }).bind('mouseup', function (e) {
+            b = self.xandy(e);
+            $(this).unbind('mousemove.trace');
+            self.xhere.apply(self, b);
         });
         return this;
-    }
+    },
 });
 
 function init() {
@@ -81,7 +103,7 @@ function init() {
         top: 44,
         width: 222,
         height: 122
-    }).trace();
+    }).xhair().trace();
 }
 
 $(init);

@@ -15,6 +15,7 @@ html {
 }
 .box {
     -webkit-transition: all 1.0s ease-in-out;
+    transition: all 1.0s ease-in-out;
     background-color: #eee;
     background-image: url(http://10.89.101.100/flabby/images/play-vengefully.png);
     background-position: center;
@@ -32,7 +33,7 @@ html {
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .q1, .q3 {
-    border: 1px dashed black;
+    border: 1px dashed rgba(0,0,0,0.5);
     height: 50%;
     position: absolute;
     width: 50%;
