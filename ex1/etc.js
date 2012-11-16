@@ -1,48 +1,18 @@
+/*global $, console, accessorix */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 var tmp;
-
-function accessor(chain, fix) {
-    var relay, obj
-    ,   links = chain.split('.')
-    ,   alias = links.pop()
-    ,   resolve = function (host) {
-        obj = host;
-        while (links.length) {
-            obj = obj[links.shift()];
-        }
-        console.log('resolve', host, '@', chain, '=>', obj);
-        return obj;
-    };
-    return function (val) {
-        relay = relay || resolve(this);
-        return fix.call(relay, alias, val);
-    };
-}
-
-function fix(nom, val) {
-    if (val) {
-        this[nom] = val;
-    }
-    return this[nom];
-}
-
-function pxfix(nom, val) {
-    if (val) {
-        this[nom] = (val + 'px');
-    }
-    return parseInt(this[nom], 10) || 0;
-}
 
 function Box(cf) {
     this.div = $('<div class="box">').appendTo('body').get(0);
     $.noop( cf && this.nport(cf) );
 }
 $.extend(Box.prototype, {
-    x: accessor('div.style.left', pxfix),
-    y: accessor('div.style.top', pxfix),
-    w: accessor('div.style.width', pxfix),
-    h: accessor('div.style.height', pxfix),
-    t: accessor('div.childNodes.0.textContent', fix),
+    x: accessorix('div.style.left', pxfix),
+    y: accessorix('div.style.top', pxfix),
+    w: accessorix('div.style.width', pxfix),
+    h: accessorix('div.style.height', pxfix),
+    t: accessorix('div.childNodes.0.textContent', fix),
     nport: function (o) {
         $.noop( (o.left !== undefined) && this.x(o.left) );
         $.noop( (o.top !== undefined) && this.y(o.top) );
