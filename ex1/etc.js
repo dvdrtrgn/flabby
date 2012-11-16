@@ -86,7 +86,6 @@ $.extend(Box.prototype, {
     },
     trace: function () {
         var a, b, self = this;
-
         $('html').bind('mousedown', function (e) {
             a = self.xandy(e);
             $(this).one('mousemove.trace', function (e) {
@@ -99,6 +98,8 @@ $.extend(Box.prototype, {
             $(this).unbind('mousemove.trace');
             b = self.xandy(e);
             self.xhere.apply(self, b);
+        }).bind('dblclick', function (e) {
+            $(self.div).toggleClass('fix');
         });
         return this;
     },

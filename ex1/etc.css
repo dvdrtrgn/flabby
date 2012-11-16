@@ -14,22 +14,23 @@ html {
     width: 100%;
 }
 .box {
-    -webkit-transition: all 1.0s ease-in-out;
-    transition: all 1.0s ease-in-out;
-    background-color: #eee;
-    background-image: url(http://10.89.101.100/flabby/images/play-vengefully.png);
-    background-position: center;
-    background-repeat: no-repeat no-repeat;
+    background: #eee url(../images/play-vengefully.png) no-repeat center;
+    background-color: rgba(255,255,255,0.5);
     background-size: contain;
     border-radius: 100%;
     border: 1px solid gray;
-    box-shadow:  1px 1px 1px gray;
+    box-shadow: 1px 1px 1px gray;
     color: #fff;
     height: 222px;
     padding: 5px;
     position: absolute;
     text-shadow: 0px 0px 2px #000;
     width: 222px;
+    -webkit-transition: all 1.0s ease-in-out;
+    transition: all 1.0s ease-in-out;
+}
+.fix {
+    background-attachment: fixed;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .q1, .q3 {
