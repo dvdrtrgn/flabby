@@ -1,0 +1,16 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-color: #ddd;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

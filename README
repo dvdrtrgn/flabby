@@ -1,6 +1,8 @@
 /*
 
 idea hurdles
+0   template set
+    stub for duping
 1   field in which you click a location and the box eases to that point
     css that does transition time of box
     js that gets mouse click (and puts offset onto box)
