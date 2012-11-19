@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=8" http-equiv="X-UA-Compatible">
+        <title>ex9—function expression</title>
+        <script src="/lib/jquery/jquery-1.7.2.js"></script>
+        <script src="/lib/js/console.js"></script>
+        <script src="../lib/accessorix.js"></script>
+        <link href="etc.css" rel="stylesheet">
+        <script src="etc.js"></script>
+    </head>
+    <body>
+        <pre>
+<h3>Named Function Expressions</h3>
+You can give names to functions defined in function expressions, with syntax like a function declaration.
+
+This does not make it a function declaration, and the name is not brought into scope, nor is the body hoisted.
+
+Here's some code to illustrate what I mean:
+
+<code>
+    foo();
+    bar();
+    baz();
+    spam();
+</code>
+//  TypeError "foo is not a function"
+//  valid
+//  TypeError "baz is not a function"
+//  ReferenceError "spam is not defined"
+
+<code>
+    var foo = function () {};
+    function bar() {};
+    var baz = function spam() {};
+</code>
+//  anonymous function expression ('foo' gets hoisted)
+//  function declaration ('bar' and the function body get hoisted)
+//  named function expression (only 'baz' gets hoisted)
+
+<code>
+    foo();
+    bar();
+    baz();
+    spam();
+</code>
+//  valid
+//  valid
+//  valid
+//  ReferenceError "spam is not defined"
+
+<h3>ECMAScript Standard</h3>
+If the variable statement occurs inside a FunctionDeclaration, the variables
+are defined with function-local scope in that function...
+Otherwise, they are in global scope/members of the global object.
+
+Variables are created when the execution scope is entered.
+A Block does not define a new execution scope.
+Only Program and FunctionDeclaration produce a new scope.
+
+Variables are initialised to undefined when created.
+A variable with an Initialiser is assigned the
+    value of its AssignmentExpression
+    when the VariableStatement is executed,
+    not when the variable is created.
+
+        </pre>
+    </body>
+</html>
+<!-- -->

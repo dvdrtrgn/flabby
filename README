@@ -25,5 +25,8 @@ idea hurdles
     fixed, local, scroll
 8   devise accessors methods
     standard and fallbacks
+9   scope hoisting
+    function and var diffs
+    expressions vs declarations
 
 */
