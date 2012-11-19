@@ -1,0 +1,35 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-color: #ddd;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+div {
+    border: 1px solid gray;
+    position: relative;
+    top: 10%;
+    left: 20%;
+    height: 60%;
+    width: 60%;
+}
+#max {
+}
+#min {
+    background-color: #333;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
