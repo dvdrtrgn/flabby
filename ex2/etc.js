@@ -1,4 +1,4 @@
-/*global $, console, accessorix */
+/*global $, console */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 function init() {
@@ -15,10 +15,10 @@ function init() {
     }
     $('div').bind('mousemove', coords);
 
-    function calcside(obj, cs) {
+    function calcSide(obj, cs) {
         return [(cs[1] - cs[0]), (cs[1] + cs[0] - 100)];
     }
-    function nameside(obj, cs) {
+    function nameSide(obj, cs) {
         return [(cs[0] > 0) ? 'sw' : 'ne', (cs[1] > 0) ? 'se' : 'nw'];
     }
     function direct(cs) {
@@ -30,30 +30,23 @@ function init() {
         return dir;
     }
     function coords(o) {
-        var cs = xandy(o),
+        var cs = xANDy(o),
             id = o.target.id,
-            ps = getposper(jq1, cs),
-            cs = calcside(jq1, ps),
-            ns = nameside(jq1, cs),
+            ps = getPosPer(jq1, cs),
+            cs = calcSide(jq1, ps),
+            ns = nameSide(jq1, cs),
             di = direct(ns);
         if (o.target.id === 'min') {
-            //o.stopPropagation();
+            o.preventDefault();
         }
-        //colors(o.target,x)
         clog(id, cs, ns, ps, di);
     }
-    function colors(ele, mag) {
-        $(ele).opacity(mag / 100);
-    }
-    function regen(l) {
-        return new RegExp(l);
-    }
-    function getposper(obj, cs) {
+    function getPosPer(obj, cs) {
         var xp = cs[0] / obj.w,
             yp = cs[1] / obj.h;
         return [xp | 0, yp | 0];
     }
-    function xandy(o) {
+    function xANDy(o) {
         return [o.offsetX, o.offsetY];
     }
 }

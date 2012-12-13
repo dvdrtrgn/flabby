@@ -30,6 +30,9 @@ div {
 }
 #min {
     background-color: #333;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
