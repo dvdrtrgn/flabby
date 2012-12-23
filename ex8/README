@@ -10,4 +10,6 @@
     IE8 was proud to introduce an ES5 standard implementation
     --- BUT, it only works on DOM objects (elements)
 
+    @do: generate polyfill with orphan proxy elements for IE8
+
 */

@@ -1,3 +1,4 @@
+  "use strict";
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var e, unit = function (fn) {
     var z = [typeof fn];
