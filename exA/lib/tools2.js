@@ -24,6 +24,13 @@ function keyObject(dat) { //    keys of every record/row in source
     return obj;
 }
 
+function obj2arrs(obj) { //             take poly and boolean
+    var arr = [];
+    arr.push(obj2arr(obj, 'key')); //   names
+    arr.push(obj2arr(obj)); //          nums
+    return arr;
+}
+
 function rundef(v, alt) {
     return hasdef(v) ? v : alt; //              redefine undefined
 }
