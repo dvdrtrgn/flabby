@@ -56,12 +56,18 @@ function obj2arr(obj, key) { //             take poly and boolean
     return arr;
 }
 
-function sumUp(x) { //                      take poly
-    var tot = 0;
-    $.each(x, function (k, v) { //           add values in object
-        tot += parseFloat(v, 10) || 0;
+/**
+ * sumarr: Add values in array
+ * @param a {array} of numbers
+ * return t {number} total of vals
+ */
+
+function sumarr(a) {
+    var t = 0;
+    a.forEach(function (v) {
+        t += (parseFloat(v, 10) || 0); //   add up
     });
-    return tot;
+    return t;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
