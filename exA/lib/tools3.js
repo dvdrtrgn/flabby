@@ -23,6 +23,13 @@ function keyArray(dat) {
     return obj2arr(obj, 'key');
 }
 
+function keySort(dat) { // @do: simplify?
+    var tmp = obj2arrs(keyObject(dat));
+    tmp = transpose(tmp);
+    columnSort(tmp, 1);
+    return column(tmp, 0);
+}
+
 function visualize(dat, msg) {
     var c, txt, //
     tr, div = $('<div>').addClass('data'),
