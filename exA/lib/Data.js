@@ -45,7 +45,7 @@ Data.prototype.indexBy = function (k) {
         k = this.columnHash(k); //                  get name from number
     }
     var tab = this.raw.slice(0); //                 dupe raw, retain cell refs
-    columnSort(tab, k, Infinity);
+    columnSort(tab, k);
     visualize(tab, 'indexBy: ' + k);
     return this._by[k] = tab; //                    store and return table
     // @do: return as object, keys of [k]

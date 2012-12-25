@@ -4,6 +4,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 function columnSort(tab, key, def) { //         def = default (for undefined)
+    def = def || Infinity;
     tab.sort(function (a, b) {
         return rundef(a[key], def) > b[key]; // compare cells in column
     });
