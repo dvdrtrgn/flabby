@@ -18,42 +18,55 @@ function arr2obj(arr) {
 }
 
 /**
- * column: Extract all values in columnn@key
- * @param tab {array} of objects
- * @param key {string} column key
- * return {array}
+ * column: Extract all values in column @ key
+ * @param t {array} of objects (table)
+ * @param k {string} data key (column)
+ * return c {array} of simple values
  */
 
-function column(tab, key) { //              take table and column key
-    var col = [];
-    tab.forEach(function (row) { //         for all rows
-        col.push(row[key]); //              collect column data
+function column(t, k) {
+    var c = [];
+    t.forEach(function (r) { //       for all rows
+        c.push(r[k]); //              collect column data
     });
-    return col;
+    return c;
 }
 
-function hasdef(v) {
-    return typeof v !== 'undefined'; //     falsey values are still values
+function hasdef(v) { // falsey values are still values
+    return typeof v !== 'undefined';
 }
 
-function intish(str) { //                   could this be a number string?
+function intish(str) { // was this probably a number?
     return (str * 1 + Infinity) > 0;
 }
 
-function key2val(x) { //                    take object/array
-    var obj = {};
-    $.each(x, function (k, v) {
-        obj[v] = k; //                      swap vals and keys
+/**
+ * key2val: Swap all keys with their values
+ * @param m {map}
+ * return o {object} of vals [or keys]
+ */
+
+function key2val(m) { //        take object/array
+    var o = {};
+    $.each(m, function (k, v) {
+        o[v] = k; //            swap vals and keys
     });
-    return obj;
+    return o;
 }
 
-function obj2arr(obj, key) { //             take poly and boolean
-    var arr = [];
-    $.each(obj, function (k, v) {
-        arr.push(key ? k : v); //           collect vals [or keys]
+/**
+ * obj2arr: Extract all vals [or keys]
+ * @param m {map}
+ * @param korv {booly} vals [or keys]
+ * return a {array} of vals [or keys]
+ */
+
+function obj2arr(m, vork) {
+    var a = [];
+    $.each(m, function (k, v) { //      for all rows
+        a.push(vork ? k : v);
     });
-    return arr;
+    return a;
 }
 
 /**

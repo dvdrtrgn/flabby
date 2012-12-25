@@ -1,5 +1,11 @@
+var a, i, m, o;
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 $(function () {
+    a = [];
+    i = 0;
+    m = new Map();
+    o = {};
+
     if (!window.debug) {
         return;
     }
