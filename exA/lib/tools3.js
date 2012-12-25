@@ -23,6 +23,18 @@ function keyArray(dat) {
     return obj2arr(obj, 'key');
 }
 
+function keyHash(dat) {
+    var i, c = 1,
+        kix = keyObject(dat),
+        col = ['Ø']; //         object key + index by 0
+    col.Ø = 0;
+    for (i in kix) {
+        col[c] = i; //          index:key (property)
+        col[i] = c++; //        key:index (property)
+    }
+    return col;
+}
+
 function keySort(dat) { // @do: simplify?
     var tmp = obj2arrs(keyObject(dat));
     tmp = transpose(tmp);

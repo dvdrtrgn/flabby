@@ -20,7 +20,7 @@ function keyObject(dat) { //    keys of every record/row in source
         });
     });
     $.each(obj, function (i, e) {
-        obj[i] = sumUp(e) / e.length; //        average prop index
+        obj[i] = sumarr(e) / e.length; //    average prop index
     });
     return obj;
 }

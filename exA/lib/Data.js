@@ -9,14 +9,7 @@ function Data(arr) {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 Data.prototype.columnHash = function (k) { //       gather hash of key/indexes
     if (!this.col || this.dirty()) {
-        var i, c = 1,
-            kix = keyObject(this.raw),
-            col = ['Ø']; //         object key + index by 0
-        col.Ø = 0;
-        for (i in kix) {
-            col[c] = i; //          index:key (property)
-            col[i] = c++; //        key:index (property)
-        }
+        var col = keyHash(this.raw);
         window.debug && visualize(transpose([col]), 'columnHash');
         this.col = col;
     }
