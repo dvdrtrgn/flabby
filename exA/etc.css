@@ -17,4 +17,18 @@ code {
     font-family: Courier;
     color: darkred;
 }
+div.data {
+    border: 1px solid #aaa;
+    display: inline-block;
+    padding: 0.2em;
+}
+div.data td,
+div.data th {
+    background-color: #fff;
+    padding: 0 0.3em;
+    text-align: center;
+}
+h4 {
+    margin: 0.25em 0;
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
