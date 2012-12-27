@@ -1,0 +1,36 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    box-sizing: border-box;
+}
+html {
+    background-color: #ddd;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+pre {
+    font-family: Monaco;
+}
+code {
+    font-family: Courier;
+    color: darkred;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+body {
+    color: #222;
+    font: 14px Arial;
+}
+
+body a {
+    color: #3D5C9D;
+    text-decoration: none;
+}
+
+#todo {
+    width: 200px;
+}
+#todos li span {
+    display: none;
+}
