@@ -31,9 +31,9 @@ code {
     margin-top: 1em;
 }
 #todos li * {
-    background-color: #eee;
+    background-color: #e3e3e3;
     border-radius: 9px;
-    color: #ccc;
+    color: #bbb;
     cursor: default;
     padding: 0 6px;
 }
