@@ -1,145 +1,113 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-// events
-$(function () {
-    $('[type=submit]').on('click', function (e) {
-        html5rocks.indexedDB.addTodo($('#todo').val());
-        $('#todo').val('');
-        return false;
-    });
+(function ($) {
+    /* normalize indexed DB */
+    window.indexedDB = (window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB);
+    window.IDBTransaction = (window.IDBTransaction || window.webkitIDBTransaction);
+    window.IDBKeyRange = (window.IDBKeyRange || window.webkitIDBKeyRange);
 
-    $('#todos').on('click', '.delete', function (e) {
-        html5rocks.indexedDB.deleteTodo(parseInt($(this).parent().find('span').text()));
-        return false;
-    });
+    var DB = $.DB = { // namespace
+        // db :: holds the real instance of the indexedDB
+        db: null,
+        //    METHODS
+        /* open (create) */
+        err: function () {
+            console.error(arguments);
+        },
+        open: function () {
+            var req = indexedDB.open('todos', 5);
+            clog(req);
+            req.onupgradeneeded = DB.err;
+            req.onsuccess = function (e) {
+                // clog('onsuccess', e);
+                DB.db = e.target.result;
+                var db = DB.db;
+                // clog('db', db);
+                DB.getAllTodoItems();
+            };
+        },
+        /* addTodo */
+        addTodo: function (str) {
+            var db = DB.db,
+                trans = db.transaction(['todo'], 'readwrite'),
+                store = trans.objectStore('todo'),
+                req;
+            req = store.put({
+                'text': str,
+                'timeStamp': ($.now() - 1356672670000),
+            })
+            req.onsuccess = function (e) {
+                DB.getAllTodoItems(); // Re-render all the todo's
+            };
+            req.onerror = DB.err;
+        },
+        /* getAllTodoItems (read) */
+        getAllTodoItems: function () {
+            $('#todos').empty();
 
-    html5rocks.indexedDB.open(); // open displays the data previously saved
-});
-
-// indexeddb
-window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
-window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
-window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
-
-var html5rocks = {}; // namespace (not required)
-html5rocks.indexedDB = {}; // open, addTodo, getAllTodoItems, deleteTodo - are own methods
-html5rocks.indexedDB.db = null; // holds the real instance of the indexedDB
-// open/create
-html5rocks.indexedDB.open = function () {
-    // you must increment the version by +1 in order to get the 'onupgradeneeded' event called
-    // ONLY there you can modify the db itself e.g create new object stores and etc.
-    var request = indexedDB.open('todos', 5);
-    console.log(request);
-
-    request.onupgradeneeded = function (e) {
-        console.log('onupgradeneeded', e);
-
-        html5rocks.indexedDB.db = e.target.result;
-        var db = html5rocks.indexedDB.db;
-        console.log('db', db);
-
-        if (!db.objectStoreNames.contains('todo')) {
-            db.createObjectStore('todo', {
-                keyPath: 'timeStamp',
-                autoIncrement: true
-            });
-        }
-    };
-
-    request.onsuccess = function (e) {
-        console.log('onsuccess', e);
-        html5rocks.indexedDB.db = e.target.result;
-        var db = html5rocks.indexedDB.db;
-        console.log('db', db);
-
-        // START chrome (obsolete - will be removed)
-        if (typeof db.setVersion === 'function') {
-            var versionReq = db.setVersion(3);
-            versionReq.onsuccess = function (e) {
-                console.log('versionReq', e);
-
-                html5rocks.indexedDB.db = e.target.source; // instead of result
-                var db = html5rocks.indexedDB.db;
-                console.log('db', db);
-
-                if (!db.objectStoreNames.contains('todo')) {
-                    db.createObjectStore('todo', {
-                        keyPath: 'timeStamp',
-                        autoIncrement: true
-                    });
+            var db = DB.db,
+                trans = db.transaction(['todo'], 'readwrite'),
+                store = trans.objectStore('todo'),
+                keyRange = IDBKeyRange.lowerBound(0),
+                cursorRequest = store.openCursor(keyRange);
+            //
+            cursorRequest.onsuccess = function (e) {
+                var result = e.target.result;
+                if (result) {
+                    new Todo(result.value);
+                    result['continue']();
                 }
-            }
-        }
-        // END chrome
-        html5rocks.indexedDB.getAllTodoItems();
+            };
+            cursorRequest.onerror = DB.err;
+        },
+        /* deleteTodo */
+        deleteTodo: function (id) {
+            var DB = this,
+                db = DB.db,
+                trans = db.transaction(['todo'], 'readwrite'),
+                store = trans.objectStore('todo'),
+                req = store.delete(id);
+            //
+            req.onsuccess = function (e) {
+                DB.getAllTodoItems(); //      Refresh the screen
+            };
+            req.onerror = DB.err;
+        },
+        init: function () {
+            clog('DB', DB);
+            $('[type=submit]').on('click', function (e) {
+                DB.addTodo($('#todo').val());
+                $('#todo').val('');
+                return false;
+            });
+            $('#todos').on('click', '.delete', function (e) {
+                DB.deleteTodo(parseInt($(this).parent().find('.id').text()));
+                return false;
+            });
+            DB.open(); // open displays the data previously saved
+        },
     };
-};
+})(jQuery);
 
-// add
-html5rocks.indexedDB.addTodo = function (todoText) {
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(['todo'], 'readwrite');
-    var store = trans.objectStore('todo');
-    var request = store.put({
-        'text': todoText,
-        'timeStamp': new Date().getTime()
-    });
-
-    request.onsuccess = function (e) {
-        // Re-render all the todo's
-        html5rocks.indexedDB.getAllTodoItems();
-    };
-
-    request.onerror = function (e) {
-        console.log(e.value);
-    };
-};
-
-// read
-html5rocks.indexedDB.getAllTodoItems = function () {
-    $('#todos').html('');
-
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(['todo'], 'readwrite');
-    var store = trans.objectStore('todo');
-
-    // Get everything in the store;
-    var keyRange = IDBKeyRange.lowerBound(0);
-    var cursorRequest = store.openCursor(keyRange);
-
-    cursorRequest.onsuccess = function (e) {
-        var result = e.target.result;
-        if ( !! result == false) return;
-
-        renderTodo(result.value);
-        result.
-        continue ();
-    };
-
-    cursorRequest.onerror = html5rocks.indexedDB.onerror;
-};
-
-// delete
-html5rocks.indexedDB.deleteTodo = function (id) {
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(['todo'], 'readwrite');
-    var store = trans.objectStore('todo');
-
-    var request = store.delete(id);
-
-    request.onsuccess = function (e) {
-        html5rocks.indexedDB.getAllTodoItems(); // Refresh the screen
-    };
-
-    request.onerror = function (e) {
-        console.log(e);
-    };
-};
-
-// helper
-
-function renderTodo(row) {
-    var li = '<li>' + row.text + '<a href="#" class="delete">[Delete]</a><span>' + row.timeStamp + '</span></li>';
-    $('#todos').append(li);
+function Todo(row) {
+    this.row = row;
+    this.renderTodo();
 }
+
+$.extend(Todo.prototype, {
+    renderTodo: function () {
+        var row = this.row,
+            li = $('<li>') //
+        .append('<a href="#" class="delete">delete</a>') //
+        .append(row.text) //
+        .append('<span class="id">' + row.timeStamp + '</span>') //
+        .appendTo(('#todos'));
+    },
+})
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* init / events */
+$(function () {
+    $.DB.init();
+});

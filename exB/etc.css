@@ -10,6 +10,10 @@ html {
     position: absolute;
     width: 100%;
 }
+body {
+    color: #222;
+    font: 14px Arial;
+}
 pre {
     font-family: Monaco;
 }
@@ -18,19 +22,37 @@ code {
     color: darkred;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-body {
-    color: #222;
-    font: 14px Arial;
+#todo {
+    width: 80%;
+}
+#todos li {
+    border-bottom: 1px solid #ccc;
+    line-height: 150%;
+    margin-top: 1em;
+}
+#todos li * {
+    background-color: #eee;
+    border-radius: 9px;
+    color: #ccc;
+    cursor: default;
+    padding: 0 6px;
 }
 
-body a {
+#todos li a {
+    background-color: #ccc;
     color: #3D5C9D;
+    font-variant: small-caps;
+    margin-right: 1em;
+    padding-bottom: 3px;
     text-decoration: none;
 }
-
-#todo {
-    width: 200px;
+#todos li a:hover {
+    background-color: #555;
+    color: red;
 }
 #todos li span {
-    display: none;
+    float: right;
+    font-family: monospace;
+    font-size: 80%;
+    margin-left: 1em;
 }
