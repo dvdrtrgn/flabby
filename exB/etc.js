@@ -11,4 +11,9 @@ window.addEventListener('storage', function (event) {
     + ' to ' + event.newValue);
 }, false);
 
+/* init / events */
+$(function () {
+    $.DB.init();
+});
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
