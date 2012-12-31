@@ -22,15 +22,15 @@ code {
     color: darkred;
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-#todo {
+.Todo .Entry {
     width: 80%;
 }
-#todos li {
+.Todo .List li {
     border-bottom: 1px solid #ccc;
     line-height: 150%;
     margin-top: 1em;
 }
-#todos li * {
+.Todo .List li * {
     background-color: #e3e3e3;
     border-radius: 9px;
     color: #bbb;
@@ -38,7 +38,7 @@ code {
     padding: 0 6px;
 }
 
-#todos li a {
+.Todo .List li a {
     background-color: #ccc;
     color: #3D5C9D;
     font-variant: small-caps;
@@ -46,11 +46,11 @@ code {
     padding-bottom: 3px;
     text-decoration: none;
 }
-#todos li a:hover {
+.Todo .List li a:hover {
     background-color: #555;
     color: red;
 }
-#todos li span {
+.Todo .List li span {
     float: right;
     font-family: monospace;
     font-size: 80%;

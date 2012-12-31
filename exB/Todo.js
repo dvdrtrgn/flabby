@@ -1,7 +1,9 @@
+/*global $ */
+/*jslint es5: true, indent: 4, nomen: true,  */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+var ent;
 
 function Todo(row) {
-    this.div = $('#todos');
     this.row = row;
     this.render();
 }
@@ -13,7 +15,7 @@ $.extend(Todo.prototype, {
         .append('<a href="#" class="remove">remove</a>') //
         .append(row.text) //
         .append('<span class="id">' + row.timeStamp + '</span>') //
-        .appendTo(this.div);
+        .appendTo(this.list);
     },
 });
 
@@ -24,29 +26,28 @@ Todo.add = function (str) {
     };
 };
 Todo.get = function () {
-    $('#todos').empty();
+    Todo.list.empty();
     return function (x) {
-        new Todo(x.value);
+        return new Todo(x.value);
     };
 };
 Todo.ini = function () {
-    var key = 'todo'
-    ,   txt = $('#' + key)
-    ;
-    div = $('#' + key + 's');
-    $('[type=submit]').on('click', function (e) {
-        $.DB.add(txt.val());
-        txt.val('');
-        return false;
-    });
-    div.on('click', '.remove', function (e) {
-        var me = $(this)
-        ,   id = parseInt(me.parent().find('.id').text())
-        ;
+    var self = Todo;
+    self.list = $('.Todo .List');
+    self.entry = $('.Todo .Entry');
+    self.button = $('.Todo .Button');
+    self.handler = function (str) {
+        $.DB.add(str);
+    };
+    ent = new Entry(self.entry, self.button, self.handler);
+
+    self.list.on('click', '.remove', function (evt) {
+        var me = $(this),
+            id = parseInt(me.parent().find('.id').text(), 10);
         $.DB.remove(id);
         return false;
     });
-    $.DB.make(key); // make displays the data previously saved
+    $.DB.make('todo'); // make displays the data previously saved
 };
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
