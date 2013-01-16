@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=8" http-equiv="X-UA-Compatible">
+        <title>Cross-document messaging B</title>
+        <script>
+
+        function receiver(evt) {
+            console.log(evt);
+            // if (evt.origin == 'http://10.89.101.100') {
+                if (evt.data === 'Hello B') {
+                    evt.source.postMessage('Hello A, how are you?', evt.origin);
+                } else {
+                    alert(evt.data);
+                }
+            // }
+        }
+        window.addEventListener('message', receiver, false);
+        </script>
+    </head>
+    <body>
+        <pre>
+B
+
+An event listener is set up to receive messages from document A.
+Using the origin property, it then checks that the domain of the sender is the expected domain.
+Document B then looks at the message, either displaying it to the user, or responding in turn with a message of its own for document A.
+        </pre>
+    </body>
+</html>
+<!-- -->

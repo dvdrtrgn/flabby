@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=8" http-equiv="X-UA-Compatible">
+        <title>Cross-document messaging A</title>
+    </head>
+    <body>
+        <pre>
+A
+
+Consider we want document A to communicate with document B, which is contained within an iframe or popup window.
+The origin of our contentWindow object is passed to postMessage.
+It must match the origin of the document we wish to communicate with (in this case, document B).
+Otherwise, a security error will be thrown and the script will stop.
+        </pre>
+        <iframe src="http://ecg.hosting.wellsfargo.com/mfal/lib/bar.html" sandbox="allow-same-origin allow-forms allow-scripts"></iframe>
+        <script>
+
+        var o = document.getElementsByTagName('iframe')[0].contentWindow;
+        function doit() {
+            o.postMessage('Hello B', 'http://ecg.hosting.wellsfargo.com/mfal/lib/bar.html');
+        }
+        window.addEventListener('message', function(){console.log(arguments)}, false);
+        doit();
+        </script>
+    </body>
+</html>
+<!-- -->
