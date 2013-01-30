@@ -1,8 +1,8 @@
-/*
+### ex7—background attachment
 
-7   scroll the three different ways
+* scroll the three different ways
+* background image attach 3 ways
+* fixed, local, scroll
 
-
-*/
-
+####
 

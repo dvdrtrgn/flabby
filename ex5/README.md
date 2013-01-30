@@ -1,4 +1,9 @@
-/*
+### ex5—vertical float
+
+* verify auto margin can be used for a controlled float layout
+* has min and max, keeps centered
+
+####
 
 body shrinks when html given a bkgr-color
 some how the viewport zindex must have content both bele and above on the stack
@@ -33,4 +38,3 @@ body size is complicated
     body is not a good theorhetical container unlike div,
     because size is special because it always shows
 
-*/

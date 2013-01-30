@@ -1,9 +1,8 @@
-/*
+### exE—currying+partials
 
-E   Currying and partials
-    show examples of both @2do
-    elegant and verbose version
+* Currying and partials
+* @2do show examples of both
+* elegant and verbose version
 
-*/
-
+####
 

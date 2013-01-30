@@ -1,8 +1,7 @@
-/*
+### exB—storage db
 
-B   webstorage
-    abstract todos from storage api into new object
+* webstorage
+* abstract todos from storage api into new object
 
-*/
-
+####
 

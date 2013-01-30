@@ -1,9 +1,8 @@
-/*
+### ex9—function expression
 
-9   scope hoisting
-    function and var diffs
-    expressions vs declarations
+* scope hoisting
+* function and var diffs
+* expressions vs declarations
 
-*/
-
+####
 

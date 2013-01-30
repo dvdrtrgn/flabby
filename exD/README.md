@@ -1,6 +1,4 @@
-/*
+### exD—cross document messaging XDM
 
-D   Cross-document messaging
-
-*/
+####
 

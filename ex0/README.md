@@ -1,8 +1,6 @@
-/*
+### ex0—template set
 
-0   template set
-    stub for duping
+* stub for duping
 
-*/
-
+####
 

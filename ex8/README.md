@@ -1,7 +1,10 @@
-/*
+### ex8—accessor action
 
-8   devise accessors methods
-    standard and fallbacks
+* devise accessors methods
+* standard and fallbacks
+
+
+####
 
     pre ES5 accessors were of the __xxx__ variety
 
@@ -12,4 +15,3 @@
 
     @do: generate polyfill with orphan proxy elements for IE8
 
-*/

@@ -1,59 +1,49 @@
 ## IDEA HURDLES
-`template set` --- `stub for duping`
 
-### List
-1. field in which you click a location and the box eases to that point
-    * css that does transition time of box
-    * js that gets mouse click (and puts offset onto box)
-    * facilitate crosshair creation
-    * resize by dragging
-    * @2do: arrow key listeners
+[ex0—template set](ex0/index.html) -- `stub for duping`
 
-2.  movement tracker that has two boxes one to min-movement and one to max-...
-    * movement within the min. has no effect
-    * outside the min but within max has to factored
+*  [ex1—ease to][ex1]
 
-3.  parallel fields that have a zoom factor
-    * each field can siblings at strata
-    * view of one affects angle of all
+*  [ex2—gauge mag][ex2]
 
-4.  field rotation according to tracker in #2
-    * axis y and x (maybe z)
+*  [ex3—parallel fields][ex3] @do
 
-5.  verify auto margin can be used for a controlled float layout
-    * has min and max, keeps centered
+*  [ex4—zoom scroll spin][ex4]
 
-6.  send two object properties to a function to calc collision
-    * send a point in space to an object and ask if it is there
+*  [ex5—vertical float][ex5]
 
-7.  background image attach the three different ways
-    * fixed, local, scroll
+*  [ex6—geometric encapsulation][ex6]
 
-8.  devise accessors methods
-    * standard and fallbacks
+*  [ex7—background attachment][ex7]
 
-9.  scope hoisting
-    * function and var diffs
-    * expressions vs declarations
+*  [ex8—accessor action][ex8]
 
-A.  scope hoisting
+*  [ex9—function expression][ex9]
 
-B.  webstorage
-    * abstract todos from storage api into new object
+*  [exA—database][exA]
 
-C.  windowProps
-    * load via script, xhr, jsonp
+*  [exB—storage db][exB]
 
-D.  Cross-document messaging
+*  [exC—windowProps][exC]
 
-E.  Currying and partials
-    * show examples of both
-    * elegant and verbose version
+*  [exD—cross document messaging XDM][exD]
 
-### UL
- * [spot link](http://site/) `(http://site/)`
+*  [exE—currying+partials][exE]
 
- * [named link][site] `[site]`
 
-[site]: http://site/
+####
 
+[ex1]: ex1/index.html
+[ex2]: ex2/index.html
+[ex3]: ex3/index.html
+[ex4]: ex4/index.html
+[ex5]: ex5/index.html
+[ex6]: ex6/index.html
+[ex7]: ex7/index.html
+[ex8]: ex8/index.html
+[ex9]: ex9/index.html
+[exA]: exA/index.html
+[exB]: exB/index.html
+[exC]: exC/index.html
+[exD]: exD/index.html
+[exE]: exE/index.html

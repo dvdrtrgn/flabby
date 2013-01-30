@@ -1,8 +1,6 @@
-/*
+### exC—windowProps
 
-C   windowProps
+* load via script, xhr, jsonp
 
-    load via script, xhr, jsonp
-
-*/
+####
 
