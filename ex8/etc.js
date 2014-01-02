@@ -1,3 +1,5 @@
+/*jslint es5:true, white:false */
+/*globals Math */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var img = new Image()
 ,   accessors = {
@@ -26,7 +28,7 @@ var img = new Image()
 };
 function makeButton(str) {
     var meth = 'write';
-    document[meth]('<button onclick="img.jpos={' + str + '}">' + str + '</button>');
+    document[meth]('<button onclick="img.jpos={' + str + '}"> jpos=' + str + '</button>');
 }
 
 function get() {
