@@ -15,7 +15,7 @@ var objectLiteral = {
         /* function body here */
     },
 };
-// Most had objectLiteral before ECMAs5 (not IE8 until RC2?)
+// Most had objectLiteral before ES5 (not IE8 until RC2?)
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Xsr = new(function Xsr() {
     this.set = function (O, nom, xsr) {
@@ -23,7 +23,7 @@ var Xsr = new(function Xsr() {
             // LEGACY API FOR setting GETTERS AND SETTERS
             O.__defineGetter__(nom, xsr.get);
             O.__defineSetter__(nom, xsr.set);
-        } else { // ECMAs5
+        } else { // ES5
             Object.defineProperty(O, nom, {
                 get: xsr.get,
                 set: xsr.set,
@@ -39,7 +39,7 @@ var Xsr = new(function Xsr() {
                 get: O.__lookupGetter__(nom),
                 set: O.__lookupSetter__(nom),
             };
-        } else { // ECMAs5
+        } else { // ES5
             return Object.getOwnPropertyDescriptor(O, nom);
         }
     };
